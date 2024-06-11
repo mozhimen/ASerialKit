@@ -1,6 +1,5 @@
 package com.mozhimen.serialk.gson
 
-import com.mozhimen.basick.utilk.kotlin.UtilKStrJson
 import org.json.JSONArray
 
 /**
@@ -12,6 +11,8 @@ import org.json.JSONArray
  */
 fun <T> String.strJson2tList(clazz: Class<T>): ArrayList<T?>? =
     UtilKStrJson.strJson2tList(this, clazz)
+
+///////////////////////////////////////////////////////////////////////////////
 
 object UtilKStrJson {
     @JvmStatic
