@@ -1,6 +1,8 @@
 package com.mozhimen.serialk.gson
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 import kotlin.jvm.Throws
 
@@ -13,9 +15,21 @@ import kotlin.jvm.Throws
  */
 object UtilKGson {
     @JvmStatic
+    fun get(): Gson =
+        Gson()
+
+    @JvmStatic
+    fun get_ofBuilder(): Gson =
+        GsonBuilder().create()
+
+    /////////////////////////////////////////////////////////////////
+
+    @JvmStatic
     @Throws(Exception::class)
     fun <T> toJson(gson: Gson, t: T): String =
         gson.toJson(t)
+
+    /////////////////////////////////////////////////////////////////
 
     @JvmStatic
     @Throws(Exception::class)
@@ -25,5 +39,10 @@ object UtilKGson {
     @JvmStatic
     @Throws(Exception::class)
     fun <T> fromJson(gson: Gson, strJson: String, typeOfT: Type): T? =
+        gson.fromJson(strJson, typeOfT)
+
+    @JvmStatic
+    @Throws(Exception::class)
+    fun <T> fromJson(gson: Gson, strJson: String, typeOfT: TypeToken<T>): T? =
         gson.fromJson(strJson, typeOfT)
 }

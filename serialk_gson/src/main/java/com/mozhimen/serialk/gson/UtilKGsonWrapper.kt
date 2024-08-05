@@ -19,17 +19,36 @@ import kotlin.jvm.Throws
 fun <T : Any> T.t2strJson_ofGson(): String =
     UtilKGsonWrapper.t2strJson_ofGson(this)
 
-@Throws(Exception::class)
-inline fun <reified T> String.strJson2t_ofGson(): T? =
-    UtilKGsonWrapper.strJson2t_ofGson(this)
+fun Any.obj2strJson_ofGson(): String =
+    UtilKGsonWrapper.obj2strJson_ofGson(this)
+
+/////////////////////////////////////////////////////////////////////////////
+
+fun <T> String.strJson2t_ofGson(typeToken: TypeToken<T>): T? =
+    UtilKGsonWrapper.strJson2t_ofGson(this, typeToken)
 
 fun <T> String.strJson2t_ofGson(clazz: Class<T>): T? =
     UtilKGsonWrapper.strJson2t_ofGson(this, clazz)
 
+fun <T> String.strJson2t_ofGson(type: Type): T? =
+    UtilKGsonWrapper.strJson2t_ofGson(this, type)
+
+@Throws(Exception::class)
+inline fun <reified T> String.strJson2t_ofGson(): T? =
+    UtilKGsonWrapper.strJson2t_ofGson(this)
+
+@Throws(Exception::class)
+inline fun <reified T> String.strJson2t_ofReified_ofGson(): T? =
+    UtilKGsonWrapper.strJson2t_ofReified_ofGson(this)
+
+@Throws(Exception::class)
+inline fun <reified T> String.strJson2t_ofType_ofGson(): T? =
+    UtilKGsonWrapper.strJson2t_ofType_ofGson(this)
+
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKGsonWrapper : BaseUtilK() {
-    val gson by lazy { Gson() }
+    val gson by lazy { UtilKGson.get() }
 
     /////////////////////////////////////////////////////////////////////////////
 
@@ -40,8 +59,20 @@ object UtilKGsonWrapper : BaseUtilK() {
 
     @JvmStatic
     @Throws(Exception::class)
+    fun <T> t2strJson_ofGson(t: T): String =
+        t2strJson_ofGson(gson, t)
+
+    @JvmStatic
+    @Throws(Exception::class)
+    fun obj2strJson_ofGson(obj: Any): String =
+        t2strJson_ofGson(obj)
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    @Throws(Exception::class)
     fun <T> strJson2t_ofGson(gson: Gson, strJson: String, typeToken: TypeToken<T>): T? =
-        UtilKGson.fromJson<T>(gson, strJson, typeToken.type)
+        UtilKGson.fromJson(gson, strJson, typeToken)
 
     @JvmStatic
     @Throws(Exception::class)
@@ -53,17 +84,7 @@ object UtilKGsonWrapper : BaseUtilK() {
     fun <T> strJson2t_ofGson(gson: Gson, strJson: String, type: Type): T? =
         UtilKGson.fromJson(gson, strJson, type)
 
-    /////////////////////////////////////////////////////////////////////////////
-
-    @JvmStatic
-    @Throws(Exception::class)
-    fun <T> t2strJson_ofGson(t: T): String =
-        t2strJson_ofGson(gson, t)
-
-    @JvmStatic
-    @Throws(Exception::class)
-    fun obj2strJson_ofGson(obj: Any): String =
-        t2strJson_ofGson(obj)
+    //
 
     @JvmStatic
     @Throws(Exception::class)
@@ -80,10 +101,17 @@ object UtilKGsonWrapper : BaseUtilK() {
     fun <T> strJson2t_ofGson(strJson: String, type: Type): T? =
         strJson2t_ofGson(gson, strJson, type)
 
+    //
+
     @JvmStatic
     @Throws(Exception::class)
     inline fun <reified T> strJson2t_ofGson(strJson: String): T? =
         strJson2t_ofGson(strJson, UtilKReflectGenericKotlin.getGenericType<T>()!!)
+
+    @JvmStatic
+    @Throws(Exception::class)
+    inline fun <reified T> strJson2t_ofType_ofGson(strJson: String): T? =
+        strJson2t_ofGson(strJson, object : TypeToken<T>() {})
 
     @JvmStatic
     @Throws(Exception::class)
