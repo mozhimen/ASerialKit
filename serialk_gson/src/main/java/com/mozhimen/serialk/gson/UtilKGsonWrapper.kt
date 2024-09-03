@@ -3,8 +3,8 @@ package com.mozhimen.serialk.gson
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
-import com.mozhimen.basick.utilk.bases.BaseUtilK
-import com.mozhimen.basick.utilk.java.lang.UtilKReflectGenericKotlin
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
+import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectGenericKotlin
 import java.lang.reflect.Type
 import kotlin.jvm.Throws
 

@@ -1,6 +1,6 @@
 package com.mozhimen.serialk.moshi
 
-import com.mozhimen.basick.utilk.java.lang.UtilKReflectGenericKotlin
+import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectGenericKotlin
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

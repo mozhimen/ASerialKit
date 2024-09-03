@@ -1,7 +1,7 @@
 package com.mozhimen.serialk.gson
 
-import com.mozhimen.basick.utilk.android.util.e
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.android.util.e
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import org.json.JSONArray
 import org.json.JSONObject
 

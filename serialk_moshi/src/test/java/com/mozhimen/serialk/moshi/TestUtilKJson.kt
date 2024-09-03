@@ -1,6 +1,6 @@
 package com.mozhimen.serialk.moshi
 
-import com.mozhimen.basick.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.printlog
 import com.mozhimen.serialk.moshi.strJson2t_ofMoshi
 import com.mozhimen.serialk.moshi.t2strJson_ofMoshi
 import org.junit.Test
