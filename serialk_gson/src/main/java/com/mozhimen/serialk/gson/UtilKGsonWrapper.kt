@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectGenericKotlin
+import com.mozhimen.kotlin.utilk.java.lang.UtilKType
 import java.lang.reflect.Type
 import kotlin.jvm.Throws
 
@@ -106,7 +106,7 @@ object UtilKGsonWrapper : BaseUtilK() {
     @JvmStatic
     @Throws(Exception::class)
     inline fun <reified T> strJson2t_ofGson(strJson: String): T? =
-        strJson2t_ofGson(strJson, UtilKReflectGenericKotlin.getGenericType<T>()!!)
+        strJson2t_ofGson(strJson, /*UtilKReflectGenericKotlin.getGenericType<T>()*/UtilKType.get<T>()!!)
 
     @JvmStatic
     @Throws(Exception::class)
