@@ -1,6 +1,6 @@
 package com.mozhimen.serialk.moshi
 
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectGenericKotlin
+import com.mozhimen.kotlin.utilk.java.lang.UtilKType
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -31,7 +31,7 @@ object UtilKMoshiWrapper {
     @Throws(Exception::class)
     @JvmStatic
     inline fun <reified T> t2strJson_ofMoshi(t: T, indent: String = ""): String =
-        UtilKMoshi.indent_toJson(moshiBuilder.adapter(UtilKReflectGenericKotlin.getGenericType<T>()!!), t, indent)
+        UtilKMoshi.indent_toJson(moshiBuilder.adapter(UtilKType.get<T>()!!), t, indent)
 
     @Throws(Exception::class)
     @JvmStatic
@@ -49,7 +49,7 @@ object UtilKMoshiWrapper {
     @Throws(Exception::class)
     @JvmStatic
     inline fun <reified T> strJson2t_ofMoshi(strJson: String): T? =
-        UtilKMoshi.fromJson(moshiBuilder.adapter<T>(UtilKReflectGenericKotlin.getGenericType<T>()!!), strJson)
+        UtilKMoshi.fromJson(moshiBuilder.adapter<T>(UtilKType.get<T>()!!), strJson)
 
     @Throws(Exception::class)
     @JvmStatic
@@ -64,7 +64,7 @@ object UtilKMoshiWrapper {
     @Throws(Exception::class)
     @JvmStatic
     inline fun <reified T> strJson2list_ofMoshi(strJson: String): MutableList<T>? =
-        strJson2t_ofMoshi<MutableList<T>>(strJson, Types.newParameterizedType(MutableList::class.java, UtilKReflectGenericKotlin.getGenericType<T>()!!))
+        strJson2t_ofMoshi<MutableList<T>>(strJson, Types.newParameterizedType(MutableList::class.java, UtilKType.get<T>()!!))
 
     @Throws(Exception::class)
     @JvmStatic
