@@ -17,6 +17,6 @@ object UtilKAnyFormat {
     fun obj2jSONObject(obj: Any): JSONObject =
         if (obj is String)
             JSONObject(obj)
-        else JSONObject(UtilKGsonWrapper.obj2strJson_ofGson(obj))
+        else JSONObject(UtilKGsonFormat.obj2strJson_ofGson(obj))
 
 }

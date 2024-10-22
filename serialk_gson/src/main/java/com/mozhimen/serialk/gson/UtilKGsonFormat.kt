@@ -17,37 +17,37 @@ import kotlin.jvm.Throws
  */
 @Throws(Exception::class)
 fun <T : Any> T.t2strJson_ofGson(): String =
-    UtilKGsonWrapper.t2strJson_ofGson(this)
+    UtilKGsonFormat.t2strJson_ofGson(this)
 
 fun Any.obj2strJson_ofGson(): String =
-    UtilKGsonWrapper.obj2strJson_ofGson(this)
+    UtilKGsonFormat.obj2strJson_ofGson(this)
 
 /////////////////////////////////////////////////////////////////////////////
 
 fun <T> String.strJson2t_ofGson(typeToken: TypeToken<T>): T? =
-    UtilKGsonWrapper.strJson2t_ofGson(this, typeToken)
+    UtilKGsonFormat.strJson2t_ofGson(this, typeToken)
 
 fun <T> String.strJson2t_ofGson(clazz: Class<T>): T? =
-    UtilKGsonWrapper.strJson2t_ofGson(this, clazz)
+    UtilKGsonFormat.strJson2t_ofGson(this, clazz)
 
 fun <T> String.strJson2t_ofGson(type: Type): T? =
-    UtilKGsonWrapper.strJson2t_ofGson(this, type)
+    UtilKGsonFormat.strJson2t_ofGson(this, type)
 
 @Throws(Exception::class)
 inline fun <reified T> String.strJson2t_ofGson(): T? =
-    UtilKGsonWrapper.strJson2t_ofGson(this)
+    UtilKGsonFormat.strJson2t_ofGson(this)
 
 @Throws(Exception::class)
 inline fun <reified T> String.strJson2t_ofReified_ofGson(): T? =
-    UtilKGsonWrapper.strJson2t_ofReified_ofGson(this)
+    UtilKGsonFormat.strJson2t_ofReified_ofGson(this)
 
 @Throws(Exception::class)
 inline fun <reified T> String.strJson2t_ofType_ofGson(): T? =
-    UtilKGsonWrapper.strJson2t_ofType_ofGson(this)
+    UtilKGsonFormat.strJson2t_ofType_ofGson(this)
 
 /////////////////////////////////////////////////////////////////////////////
 
-object UtilKGsonWrapper : BaseUtilK() {
+object UtilKGsonFormat : BaseUtilK() {
     val gson by lazy { UtilKGson.get() }
 
     /////////////////////////////////////////////////////////////////////////////
