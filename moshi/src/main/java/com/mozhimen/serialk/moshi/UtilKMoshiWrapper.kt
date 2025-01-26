@@ -22,6 +22,8 @@ inline fun <reified T : Any> T.t2strJson_ofMoshi(indent: String = ""): String =
 inline fun <reified T> String.strJson2t_ofMoshi(): T? =
     UtilKMoshiWrapper.strJson2t_ofMoshi(this)
 
+/////////////////////////////////////////////////////////////////////////////
+
 object UtilKMoshiWrapper {
 
     val moshiBuilder by lazy { Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build() }

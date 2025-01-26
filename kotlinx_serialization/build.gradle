@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.serialk.gson'
+    namespace 'com.mozhimen.serialk.serialization'
     compileSdk 34
 
     defaultConfig {
@@ -12,13 +12,13 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+//        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -31,8 +31,8 @@ android {
 }
 
 dependencies {
-    implementation project(':KUtilKit:utilk_android')
-    api project(':ALibKit_Google:gson')
+    api project(':ALibKit_Jetbrains:kotlinx_serialization_core')
+    api project(':ALibKit_Jetbrains:kotlinx_serialization_json')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
