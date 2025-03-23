@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonAdapter
  * @Date 2024/3/28 19:43
  * @Version 1.0
  */
-object UtilKMoshi {
+object UtilMoshi {
     @Throws(Exception::class)
     @JvmStatic
     fun <T> indent_toJson(adapter: JsonAdapter<T>, t: T, indent: String = ""): String =

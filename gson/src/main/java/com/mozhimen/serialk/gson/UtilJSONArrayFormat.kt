@@ -13,21 +13,21 @@ import org.json.JSONObject
  * @Version 1.0
  */
 
-fun <T> JSONArray.jSONArray2tList(clazz: Class<T>): ArrayList<T?>? =
-    UtilKJSONArrayFormat.jSONArray2tList(this, clazz)
+fun <T> JSONArray.jSONArray2ts(clazz: Class<T>): ArrayList<T?>? =
+    UtilJSONArrayFormat.jSONArray2ts(this, clazz)
 
 ////////////////////////////////////////////////
 
-object UtilKJSONArrayFormat : IUtilK {
+object UtilJSONArrayFormat : IUtilK {
     @JvmStatic
-    fun <T> jSONArray2tList(jsonArray: JSONArray, clazz: Class<T>): ArrayList<T?>? {
+    fun <T> jSONArray2ts(jsonArray: JSONArray, clazz: Class<T>): ArrayList<T?>? {
         val strs = ArrayList<T?>()
         try {
             val length = jsonArray.length()
             for (i in 0 until length) {
                 val jsonObj = jsonArray[i] as? JSONObject?
                 if (jsonObj != null)
-                    strs.add(UtilKGsonFormat.strJson2t_ofGson(jsonObj.toString(), clazz))
+                    strs.add(UtilGsonFormat.strJson2t_gson(jsonObj.toString(), clazz))
                 else
                     strs.add(null)
             }

@@ -10,13 +10,13 @@ import org.json.JSONObject
  * @Version 1.0
  */
 fun Any.obj2jSONObject(): JSONObject =
-    UtilKAnyFormat.obj2jSONObject(this)
+    UtilAnyFormat.obj2jSONObject(this)
 
-object UtilKAnyFormat {
+object UtilAnyFormat {
     @JvmStatic
     fun obj2jSONObject(obj: Any): JSONObject =
         if (obj is String)
             JSONObject(obj)
-        else JSONObject(UtilKGsonFormat.obj2strJson_ofGson(obj))
+        else JSONObject(UtilGsonFormat.obj2strJson_gson(obj))
 
 }

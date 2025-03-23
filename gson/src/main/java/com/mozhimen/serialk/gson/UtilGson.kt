@@ -13,7 +13,7 @@ import kotlin.jvm.Throws
  * @Date 2024/3/27
  * @Version 1.0
  */
-object UtilKGson {
+object UtilGson {
     @JvmStatic
     fun get(): Gson =
         Gson()

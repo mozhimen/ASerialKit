@@ -18,9 +18,9 @@ class TestUtilKJson {
               "user": "DK234455",
               "pwd": "78e3396c576b4420b31acd20e412c5d9"
             }
-        """.trimIndent().strJson2t_ofMoshi<Bean>().printlog()
+        """.trimIndent().strJson2t_moshi<Bean>().printlog()
 
-        Bean("123", "123").t2strJson_ofMoshi().printlog()
+        Bean("123", "123").t2strJson_moshi().printlog()
     }
 
     data class Bean(
