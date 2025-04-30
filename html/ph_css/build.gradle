@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.serialk.protobuf'
+    namespace 'com.mozhimen.serialk.html.ph_css'
     compileSdk 35
 
     defaultConfig {
@@ -31,7 +31,9 @@ android {
 }
 
 dependencies {
-    api project(":ALibKit_Google:protobuf")
+    implementation project(':KUtilKit:android')
+    api "com.helger:ph-css:6.1.0" // CSS 解析库
+    api "org.jsoup:jsoup:1.15.3"           // HTML 解析
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

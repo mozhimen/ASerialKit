@@ -19,11 +19,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ASerialKit"
-include ':app'
-include ':kotlinx_serialization'
-include ':moshi'
-include ':gson'
-include ':protobuf'
+
 //ALibKit_Google
 include ":ALibKit_Google"
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
@@ -55,4 +51,10 @@ include ':KUtilKit:kotlin'
 include ":ASwiftKit"
 project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
 include ':ASwiftKit:basick'
-
+//
+include ':app'
+include ':json:kotlinx_serialization'
+include ':json:moshi'
+include ':json:gson'
+include ':protobuf'
+include ':html:ph_css'
