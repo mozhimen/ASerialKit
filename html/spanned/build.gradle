@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.serialk.html.ph_css'
+    namespace 'com.mozhimen.serialk.html.spanned'
     compileSdk 35
 
     defaultConfig {
@@ -12,7 +12,7 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+//        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -28,16 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    packagingOptions {
-        exclude 'META-INF/**'
-        exclude 'changelog.xml'
-    }
 }
 
 dependencies {
     implementation project(':KUtilKit:android')
-    api "com.helger:ph-css:6.1.0" // CSS 解析库
-    api "org.jsoup:jsoup:1.15.3"           // HTML 解析
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
