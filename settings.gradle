@@ -51,6 +51,7 @@ include ':KUtilKit:kotlin'
 include ":ASwiftKit"
 project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
 include ':ASwiftKit:basick'
+include ':ASwiftKit:composek'
 //
 include ':app'
 include ':json:kotlinx_serialization'
@@ -59,3 +60,4 @@ include ':json:gson'
 include ':protobuf'
 include ':html:ph_css'
 include ':html:spanned'
+include ':html:annotatedstring'

@@ -14,7 +14,7 @@ import android.text.style.ReplacementSpan
  * @Version 1.0
  */
 /**
- * This span defines how a table should be rendered in the HtmlTextView. The default implementation
+ * This span defines how a table should be rendered in the TextKHtml. The default implementation
  * is a cop-out which replaces the HTML table with some text ("[tap for table]" is the default).
  *
  *

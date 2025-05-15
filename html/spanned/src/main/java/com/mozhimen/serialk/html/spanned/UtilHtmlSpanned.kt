@@ -6,7 +6,9 @@ import android.text.Spanned
 import com.mozhimen.kotlin.utilk.android.text.UtilKSpannedWrapper
 import com.mozhimen.serialk.html.spanned.commons.ITagAOnClickListener
 import com.mozhimen.serialk.html.spanned.commons.ITagClickListenerProvider
+import com.mozhimen.serialk.html.spanned.helpers.HtmlContentHandler
 import com.mozhimen.serialk.html.spanned.helpers.HtmlSpannedBuilder
+import com.mozhimen.serialk.html.spanned.helpers.HtmlTagHandler
 import com.mozhimen.serialk.html.spanned.impls.ClickableSpanTable
 import com.mozhimen.serialk.html.spanned.impls.ReplacementSpanDrawTableLink
 
@@ -21,7 +23,7 @@ object UtilHtmlSpanned {
     @JvmStatic
     fun strHtml2spanned(
         builder: HtmlSpannedBuilder,
-    ): Spanned? =
+    ): Spanned =
         strHtml2spanned(
             builder.getHtml(), builder.getImageGetter(), builder.getClickableSpanTable(),
             builder.getReplacementSpanDrawTableLink(), object : ITagClickListenerProvider {
@@ -44,15 +46,15 @@ object UtilHtmlSpanned {
     ): Spanned {
         var html = strHtml
         val htmlTagHandler: HtmlTagHandler = HtmlTagHandler()
-        htmlTagHandler.setClickableTableSpan(clickableTableSpan)
-        htmlTagHandler.setDrawTableLinkSpan(drawTableLinkSpan)
+        htmlTagHandler.setClickableTableSpan(clickableSpanTable)
+        htmlTagHandler.setDrawTableLinkSpan(replacementSpanDrawTableLink)
         htmlTagHandler.setOnClickATagListenerProvider(tagClickListenerProvider)
         htmlTagHandler.setListIndentPx(indent)
         html = htmlTagHandler.overrideTags(html)
         val formattedHtml = if (removeTrailingWhiteSpace) {
-            UtilKSpannedWrapper.removeLastBottomPadding(Html.fromHtml(html, imageGetter, WrapperContentHandler(htmlTagHandler)))
+            UtilKSpannedWrapper.removeLastBottomPadding(Html.fromHtml(html, imageGetter, HtmlContentHandler(htmlTagHandler)))
         } else {
-            Html.fromHtml(html, imageGetter, WrapperContentHandler(htmlTagHandler))
+            Html.fromHtml(html, imageGetter, HtmlContentHandler(htmlTagHandler))
         }
         return formattedHtml
     }

@@ -15,7 +15,7 @@ import android.view.View
 interface ITagAOnClickListener {
     /**
      * Notifies of anchor tag click events.
-     * @param widget - the [HtmlTextView] instance
+     * @param widget - the [TextKHtml] instance
      * @param spannedText - the string value of the text spanned
      * @param href - the url for the anchor tag
      * @return indicates whether the click event has been handled
