@@ -117,6 +117,7 @@ class HtmlTagHandler : ITagHandler {
     private class Tr
     private class Th
     private class Td
+    private class Blockquote
 
     override fun handleTag(opening: Boolean, tag: String, output: Editable, attributes: Attributes?): Boolean {
         if (opening) {
@@ -167,6 +168,10 @@ class HtmlTagHandler : ITagHandler {
                 start(output, Th())
             } else if (tag.equals("td", ignoreCase = true)) {
                 start(output, Td())
+            } else if (tag.equals("blockquote", ignoreCase = true)) {
+                if (output.isNotEmpty() && output.last() != '\n')
+                    output.append('\n')
+                start(output, Blockquote())
             } else {
                 return false
             }
@@ -260,7 +265,7 @@ class HtmlTagHandler : ITagHandler {
                     var myClickableTableSpan: ClickableSpanTable? = null
                     if (clickableSpanTable != null) {
                         myClickableTableSpan = clickableSpanTable!!.newInstance()
-                        myClickableTableSpan!!.tableHtml=(tableHtml)
+                        myClickableTableSpan!!.tableHtml = (tableHtml)
                     }
 
                     var myDrawTableLinkSpan: ReplacementSpanDrawTableLink? = null
@@ -278,6 +283,10 @@ class HtmlTagHandler : ITagHandler {
                 end(output, Th::class.java, false)
             } else if (tag.equals("td", ignoreCase = true)) {
                 end(output, Td::class.java, false)
+            } else if (tag.equals("blockquote", ignoreCase = true)) {
+                end(output, Blockquote::class.java, false)
+                if (output.isNotEmpty() && output.last() != '\n')
+                    output.append('\n')
             } else {
                 return false
             }
@@ -318,36 +327,78 @@ class HtmlTagHandler : ITagHandler {
     /**
      * Modified from [android.text.Html]
      */
-    private fun end(output: Editable, kind: Class<*>, paragraphStyle: Boolean, vararg replaces: Any?) {
-        val obj = getLast(output, kind)
-        // start of the tag
-        val where = output.getSpanStart(obj)
-        // end of the tag
-        val len = output.length
+//    private fun end(output: Editable, kind: Class<*>, paragraphStyle: Boolean, vararg replaces: Any?) {
+//        val obj = getLast(output, kind)
+//        // start of the tag
+//        val where = output.getSpanStart(obj)
+//        // end of the tag
+//        val len = output.length
+//
+//        // If we're in a table, then we need to store the raw HTML for later
+//        if (tableTagLevel > 0) {
+//            val extractedSpanText = extractSpanText(output, kind)
+//            tableHtmlBuilder.append(extractedSpanText)
+//        }
+//
+//        output.removeSpan(obj)
+//
+//        if (where != len) {
+//            var thisLen = len
+//            // paragraph styles like AlignmentSpan need to end with a new line!
+//            if (paragraphStyle) {
+//                output.append("\n")
+//                thisLen++
+//            }
+//            for (replace in replaces) {
+//                output.setSpan(replace, where, thisLen, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+//            }
+//
+////            if (HtmlTextView.DEBUG) {
+////                Log.d(HtmlTextView.TAG, "where: $where")
+////                Log.d(HtmlTextView.TAG, "thisLen: $thisLen")
+////            }
+//        }
+//    }
 
-        // If we're in a table, then we need to store the raw HTML for later
-        if (tableTagLevel > 0) {
-            val extractedSpanText = extractSpanText(output, kind)
-            tableHtmlBuilder.append(extractedSpanText)
+    private fun end(
+        output: Editable,
+        kind: Class<*>,
+        paragraphStyle: Boolean,
+        vararg replaces: Any?,
+    ) {
+        val obj = getLast(output, kind) ?: return
+
+        val start = output.getSpanStart(obj)
+        if (start < 0) {
+            output.removeSpan(obj)
+            return
         }
 
+        // 如果是段落样式，先补换行
+        if (paragraphStyle && (output.isEmpty() || output.last() != '\n')) {
+            output.append('\n')
+        }
+
+        val end = output.length
         output.removeSpan(obj)
 
-        if (where != len) {
-            var thisLen = len
-            // paragraph styles like AlignmentSpan need to end with a new line!
-            if (paragraphStyle) {
-                output.append("\n")
-                thisLen++
-            }
-            for (replace in replaces) {
-                output.setSpan(replace, where, thisLen, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            }
+        // 边界保护（核心）
+        if (start >= end) return
 
-//            if (HtmlTextView.DEBUG) {
-//                Log.d(HtmlTextView.TAG, "where: $where")
-//                Log.d(HtmlTextView.TAG, "thisLen: $thisLen")
-//            }
+        for (replace in replaces) {
+            if (replace == null) continue
+
+            val safeStart = start.coerceIn(0, end)
+            val safeEnd = end.coerceIn(safeStart, end)
+
+            if (safeStart < safeEnd) {
+                output.setSpan(
+                    replace,
+                    safeStart,
+                    safeEnd,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
         }
     }
 
