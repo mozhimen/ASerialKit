@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.serialk.html.spanned'
+    namespace 'com.mozhimen.serialk.gson'
     compileSdk 35
 
     defaultConfig {
@@ -31,9 +31,10 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.mozhimen.KUtilKit:android:0.0.2'
+    implementation 'com.github.mozhimen.KUtilKit:android:0.0.3'
+    api 'com.github.mozhimen.ALibKit_Google:gson:0.0.6'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

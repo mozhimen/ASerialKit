@@ -1,6 +1,8 @@
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        google()
+        mavenCentral()
         mavenLocal()
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/google' }
@@ -14,50 +16,15 @@ dependencyResolutionManagement {
         maven { url 'https://developer.huawei.com/repo/' }
         maven { url "https://jitpack.io" }
         maven { url 'https://www.jitpack.io' }
-        mavenCentral()
-        google()
     }
 }
 rootProject.name = "ASerialKit"
-
-//ALibKit_Google
-include ":ALibKit_Google"
-project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
-include ':ALibKit_Google:gson'
-include ':ALibKit_Google:material'
-include ':ALibKit_Google:protobuf'
-//ALibKit_Jetpack
-include ":ALibKit_Jetpack"
-project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
-include ':ALibKit_Jetpack:core'
-include ':ALibKit_Jetpack:annotation'
-//ALibKit_Jetbrains
-include ":ALibKit_Jetbrains"
-project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
-include ':ALibKit_Jetbrains:kotlin_stdlib'
-include ':ALibKit_Jetbrains:kotlinx_serialization_core'
-include ':ALibKit_Jetbrains:kotlinx_serialization_json'
-include ':ALibKit_Jetbrains:kotlinx_coroutines'
-//ALibKit_Squareup
-include ":ALibKit_Squareup"
-project(':ALibKit_Squareup').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Squareup")
-include ':ALibKit_Squareup:moshi'
-//KUtilKit
-include ":KUtilKit"
-project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
-include ':KUtilKit:android'
-include ':KUtilKit:kotlin'
-//ASwiftKit
-include ":ASwiftKit"
-project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
-include ':ASwiftKit:basick'
-include ':ASwiftKit:composek'
 //
 include ':app'
-include ':json:kotlinx_serialization'
-include ':json:moshi'
-include ':json:gson'
+include ':json-kotlinx_serialization'
+include ':json-moshi'
+include ':json-gson'
 include ':protobuf'
-include ':html:ph_css'
-include ':html:spanned'
-include ':html:annotatedstring'
+include ':html-ph_css'
+include ':html-spanned'
+include ':html-annotatedstring'

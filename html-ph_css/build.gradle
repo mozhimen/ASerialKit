@@ -4,14 +4,15 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.serialk.html.annotatedstring'
+    namespace 'com.mozhimen.serialk.html.ph_css'
     compileSdk 35
 
     defaultConfig {
-        minSdk 21
+        minSdk 19
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//        consumerProguardFiles "consumer-rules.pro"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -27,17 +28,16 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = "1.5.15"
+    packagingOptions {
+        exclude 'META-INF/**'
+        exclude 'changelog.xml'
+    }
 }
 
 dependencies {
-    implementation project(':ASwiftKit:composek')
-    if (rootProject.name=="ASerialKit"){
-        implementation project(':html:spanned')
-    }else{
-        implementation project(':ASerialKit:html:spanned')
-    }
+    implementation 'com.github.mozhimen.KUtilKit:android:0.0.3'
+    api "com.helger:ph-css:6.1.0" // CSS 解析库
+    api "org.jsoup:jsoup:1.15.3"           // HTML 解析
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

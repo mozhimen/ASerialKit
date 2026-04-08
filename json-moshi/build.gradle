@@ -1,10 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.mozhimen.serialk.kotlinx_serialization'
+    namespace 'com.mozhimen.serialk.moshi'
     compileSdk 35
 
     defaultConfig {
@@ -31,8 +32,9 @@ android {
 }
 
 dependencies {
-//    api project(':ALibKit_Jetbrains:kotlinx_serialization_core')
-    api project(':ALibKit_Jetbrains:kotlinx_serialization_json')
+    implementation 'com.github.mozhimen.KUtilKit:android:0.0.3'
+    api 'com.github.mozhimen.ALibKit_Squareup:moshi-bom:0.0.1'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.8.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

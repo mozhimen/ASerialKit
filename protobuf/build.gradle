@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    api project(":ALibKit_Google:protobuf")
+    api 'com.github.mozhimen.ALibKit_Google:protobuf:0.0.6'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
